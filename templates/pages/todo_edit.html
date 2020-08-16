@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block head %} 
+    <title>Flask || Edit Todo</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="wrapper">
+
+    <div class="d-flex w-100 justify-content-center">
+        <form class="form-inline mt-3" action="/todo/edit/{{todo.id}}" method="POST">
+            <div class="form-group mx-sm-3 mb-2">
+              <label for="todo" class="text-lite">Title  </label>
+              <input type="text" class="form-control mx-1" id="todo" name="todo" placeholder="Update your Todo" value="{{todo.todo}}">
+            </div>
+            <button type="submit" class="btn btn-success mb-2">Update</button>
+          </form>
+    </div>
+
+</div>
+
+{% endblock body %}

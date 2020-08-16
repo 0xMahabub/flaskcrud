@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+
+{% block head %} 
+    <title>Flask || Todo</title>
+{% endblock %}
+
+{% block body %}
+
+
+<div class="wrapper">
+
+    <div class="d-flex w-100 justify-content-center">
+        <form class="form-inline mt-3" action="/todo" method="POST">
+            <div class="form-group mx-sm-3 mb-2">
+              <label for="todo" class="sr-only">Todo</label>
+              <input type="text" class="form-control" id="todo" name="todo" placeholder="Insert new Todo">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Add</button>
+          </form>
+    </div>
+
+    <table class="table table-dark mt-3">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for todo in todos %}
+                <tr>
+                    <th scope="row">{{todo.id}}</th>
+                    <td>{{todo.todo}}</td>
+                    <td>
+                        <a href="/todo/edit/{{todo.id}}" class="btn btn-sm btn-info mr-1">Edit</a>
+                        <!-- <a href="/todo/del/{{todo.id}}" class="btn btn-sm btn-danger">Del</a> -->
+                        <button class="btn btn-sm btn-danger" onClick="confirmDel(event)" todo="{{todo.id}}">Delete</button>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            
+            {% if todos|length < 1 %}
+              <tr>
+                <th>Empty! No data exists</th>
+              </tr>
+            {% endif %}
+              
+        </tbody>
+      </table>
+</div>
+
+
+
+
+<!--
+  <div class="col-12">
+
+    
+    <form action="/todo" method="POST" class="mt-2">
+        <input type="text" class="col-xs-12 mr-2 p-1" name="todo" placeholder="Type your TODO name" />
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+
+    <div class="lists">
+        <ul class="list-none">
+            {% for todo in todos %}
+                <li class="todo-item">Todo : {{todo.todo}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+  </div> -->
+{% endblock body %}
